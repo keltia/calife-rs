@@ -1,0 +1,20 @@
+[package]
+name = "calife-rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["Ollivier Robert <roberto@keltia.net>"]
+categories = ["command-line-utilities"]
+readme = "README.md"
+license = "MIT"
+description = "Calife rewritten in Rust."
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[badges]
+maintenance = { status = "actively-developed" }
+
+[dependencies]
+clap = {version = "3", features = [ "cargo", "derive" ] }
+
