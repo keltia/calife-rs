@@ -1,10 +1,12 @@
-use std::io::Read;
 use std::path::PathBuf;
 
-use anyhow::Result;
 use csv::Reader;
+use log::debug;
 use serde::Deserialize;
 
+use crate::makepath;
+
+pub const BASEDIR: &str = "/etc";
 pub const CONFIG_FILE: &str = "calife.auth";
 
 #[derive(Debug, Deserialize)]
@@ -32,5 +34,13 @@ impl From<&str> for Become {
             Become::User(s[1..].to_owned())
         }
     }
+}
+
+/// Returns the path of the default config file
+///
+pub fn default_file() -> PathBuf {
+    let def: PathBuf = makepath!(BASEDIR, CONFIG_FILE);
+    debug!("Default file: {:?}", def);
+    def
 }
 
