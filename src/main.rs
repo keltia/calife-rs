@@ -18,7 +18,7 @@ fn main() -> Result<()> {
         .flexible(true)
         .delimiter(b':')
         .from_path(CONFIG_FILE)
-        .unwrap_or_else(Err(anyhow!("Unknown file {}", CONFIG_FILE)))?;
+        .unwrap_or_else(|e| panic!("Unknown file {}: {}", CONFIG_FILE, e));
 
     let _users: Vec<_> = rdr
         .records()
