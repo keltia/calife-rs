@@ -23,4 +23,7 @@ maintenance = { status = "actively-developed" }
 anyhow = "1.0.66"
 clap = { version = "4", features = ["cargo", "derive"] }
 csv = "1.1.6"
+home = "0.5.4"
+log = "0.4.17"
 serde = { version = "1.0.147", features = ["derive"] }
+stderrlog = "0.5.4"
