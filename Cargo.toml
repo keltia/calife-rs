@@ -12,9 +12,15 @@ description = "Calife rewritten in Rust."
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
+[[bin]]
+name = "calife"
+path = "src"
+
 [badges]
 maintenance = { status = "actively-developed" }
 
 [dependencies]
-clap = {version = "3", features = [ "cargo", "derive" ] }
-
+anyhow = "1.0.66"
+clap = { version = "4", features = ["cargo", "derive"] }
+csv = "1.1.6"
+serde = { version = "1.0.147", features = ["derive"] }
