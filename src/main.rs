@@ -1,17 +1,18 @@
 mod config;
 mod version;
+mod macros;
 
 #[cfg(not(unix))]
 compile_error!("Not available outside of the Unix World");
 
-use anyhow::{anyhow, Result};
+use anyhow::Result;
 use csv::ReaderBuilder;
-use crate::config::{CONFIG_FILE, read_config, User};
+
+use crate::config::{CONFIG_FILE, User};
 use crate::version::{CALIFE_NAME, CALIFE_VERSION};
 
-fn main() -> Result<()>{
-
-    println!("Hello, world! {} = {}", CALIFE_NAME,  CALIFE_VERSION);
+fn main() -> Result<()> {
+    println!("Hello, world! {} = {}", CALIFE_NAME, CALIFE_VERSION);
 
     let mut rdr = ReaderBuilder::new()
         .flexible(true)
