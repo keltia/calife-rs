@@ -14,7 +14,7 @@ rustdoc-args = ["--cfg", "docsrs"]
 
 [[bin]]
 name = "calife"
-path = "src"
+path = "src/main.rs"
 
 [badges]
 maintenance = { status = "actively-developed" }
