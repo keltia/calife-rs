@@ -158,3 +158,19 @@ impl Config {
         Ok(Auth::new(users))
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use anyhow::bail;
+    use super::*;
+    use rstest::rstest;
+
+    #[rstest]
+    #[case("noone", Become::User("noone".to_string()))]
+    #[case("%group", Become::Group("group".to_string()))]
+    #[case("@another", Become::Group("another".to_string()))]
+    fn test_become_from(#[case] s: &str, #[case]b: Become) {
+        let s = Become::from(s);
+        assert_eq!(b, s)
+    }
+}
