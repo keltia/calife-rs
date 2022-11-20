@@ -13,14 +13,17 @@ use crate::makepath;
 pub const BASEDIR: &str = "/etc";
 pub const CONFIG_FILE: &str = "calife.auth";
 
-#[derive(Debug, Deserialize)]
+/// This struct holds what we get from the configuration file. For now we use the exact same
+/// file as the C version.
+///
+#[derive(Clone, Debug, Deserialize)]
 pub struct User {
-    /// Who is allowed
+    /// User name
     pub name: String,
     /// They want a different shell
-    pub shell: Option<String>,
+    pub shell: Option<Shell>,
     /// Who they are allowed to become, incl. groups like %wheel or @staff
-    pub users: Option<Vec<Become>>,
+    pub who: Option<Vec<Become>>,
 }
 
 impl Default for User {
@@ -57,6 +60,8 @@ impl Default for Become {
 }
 
 impl From<&str> for Become {
+    /// Groups are prefixed with `%` or `@`
+    ///
     fn from(s: &str) -> Self {
         if s.starts_with("@") || s.starts_with("%") {
             Become::Group(s[1..].to_owned())
