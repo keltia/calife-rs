@@ -24,6 +24,11 @@ anyhow = "1.0.66"
 clap = { version = "4", features = ["cargo", "derive"] }
 csv = "1.1.6"
 home = "0.5.4"
+itertools = "0.10.5"
 log = "0.4.17"
 serde = { version = "1.0.147", features = ["derive"] }
 stderrlog = "0.5.4"
+
+[dev-dependencies]
+assert_cmd = { version = "2.0.6", features = ["color"] }
+rstest = "0.15.0"
