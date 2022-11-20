@@ -61,7 +61,7 @@ impl From<&str> for Become {
         if s.starts_with("@") || s.starts_with("%") {
             Become::Group(s[1..].to_owned())
         } else {
-            Become::User(s[1..].to_owned())
+            Become::User(s.trim().to_owned())
         }
     }
 }
