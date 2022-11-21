@@ -61,6 +61,10 @@ impl From<&str> for Become {
         if s.starts_with('@') || s.starts_with('%') {
             Become::Group(s[1..].to_owned())
         } else {
+            let s = s.trim();
+            if s == "root" {
+                return Become::Root
+            }
             Become::User(s.trim().to_owned())
         }
     }
@@ -145,6 +149,7 @@ mod tests {
     use rstest::rstest;
 
     #[rstest]
+    #[case("root", Become::Root)]
     #[case("noone", Become::User("noone".to_string()))]
     #[case("%group", Become::Group("group".to_string()))]
     #[case("@another", Become::Group("another".to_string()))]
