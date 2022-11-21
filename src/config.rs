@@ -17,6 +17,13 @@ pub const CONFIG_FILE: &str = "calife.auth";
 pub struct Config;
 
 impl Config {
+    /// Returns the path of the default config file
+    ///
+    pub fn default_file() -> PathBuf {
+        let def: PathBuf = makepath!(BASEDIR, CONFIG_FILE);
+        def
+    }
+
     /// Basic reader for the original configuration file
     ///
     pub fn load(fname: PathBuf) -> Result<Auth> {
