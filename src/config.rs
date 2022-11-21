@@ -27,6 +27,7 @@ impl Config {
     /// Basic reader for the original configuration file
     ///
     pub fn load(fname: PathBuf) -> Result<Auth> {
+        debug!("Loading…");
         let lines = fs::read_to_string(fname)?;
         let content = lines.lines();
         let users = content
@@ -65,6 +66,7 @@ impl Config {
             // Filter out invalid entries
             //
             .filter(|u| u.name != "INVALID")
+            .inspect(|u| debug!("{:?}", u))
             .map(|u| (u.name.to_owned(), u))
             // Create a HashMap of all entries
             //
