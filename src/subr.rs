@@ -1,3 +1,4 @@
+use std::fmt::{Display, Formatter};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::PathBuf;
@@ -62,6 +63,17 @@ impl From<&str> for Become {
         } else {
             Become::User(s.trim().to_owned())
         }
+    }
+}
+
+impl Display for Become {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let w = match self {
+            Become::Root => "root".to_owned(),
+            Become::User(s) => s.to_owned(),
+            Become::Group(g) => format!("group({})", g)
+        };
+        write!(f, "{}", w)
     }
 }
 
