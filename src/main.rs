@@ -5,8 +5,9 @@ pub mod macros;
 pub mod subr;
 pub mod version;
 
-#[cfg(not(unix))]
+//#[cfg(not(unix))]
 //compile_error!("Not available outside of the Unix World");
+
 use std::path::PathBuf;
 
 use anyhow::Result;
