@@ -31,7 +31,7 @@ impl Config {
         let content = lines.lines();
         let users = content
             .map(|line| {
-                let fields: Vec<_> = line.split(":").collect();
+                let fields: Vec<_> = line.split(':').collect();
                 let n = fields[0];
 
                 // Better way to do this maybe?
@@ -48,7 +48,7 @@ impl Config {
                         who: Some(vec![Become::Root]),
                     },
                     3 => {
-                        let users: Vec<&str> = fields[2].split(",").collect();
+                        let users: Vec<&str> = fields[2].split(',').collect();
                         User {
                             name: n.to_owned(),
                             shell: Some(Shell::from(fields[1])),
