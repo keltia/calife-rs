@@ -140,7 +140,7 @@ mod tests {
     #[rstest]
     #[case("/bin/zsh", true)]
     #[case("/bin/tcsh", true)]
-    #[case("dish", false)]
+    #[case("/dish", false)]
     #[case("/usr/local/bin/fish", true)]
     fn test_shell_valid(#[case] s: &str, #[case] valid: bool) {
         assert_eq!(valid, Shell::valid(s))
