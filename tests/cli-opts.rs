@@ -13,5 +13,3 @@ fn test_version() {
     let mut cmd = Command::cargo_bin(BIN).unwrap();
     cmd.arg("-V").assert().success();
 }
-
-
