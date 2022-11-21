@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::PathBuf;
+use log::debug;
 
 use crate::makepath;
 
@@ -115,8 +116,11 @@ impl Shell {
                 // Read all lines, keeping only those starting with a "/"
                 //
                 let list = bf.lines().map(|l| l.unwrap());
-
-                list.filter(|l| l.starts_with('/')).any(|l| l == *s)
+                dbg!(&list);
+                list
+                    .inspect(|f| debug!("l={:?}", f))
+                    .filter(|l| l.starts_with('/'))
+                    .any(|l| l == *s)
             }
             _ => true,
         }
