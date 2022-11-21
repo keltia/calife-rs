@@ -3,6 +3,8 @@ use std::io::{BufRead, BufReader};
 use std::path::PathBuf;
 
 use crate::makepath;
+
+#[cfg(not(test))]
 use crate::config::BASEDIR;
 
 /// This struct holds what we get from the configuration file. For now we use the exact same
@@ -98,7 +100,11 @@ impl Shell {
     pub fn valid(s: &str) -> bool {
         // Check in `/etc/shells`
         //
+        #[cfg(not(test))]
         let db: PathBuf = makepath!(BASEDIR, "shells");
+
+        #[cfg(test)]
+        let db: PathBuf = makepath!("testdata", "shells");
 
         // If there is no `/etc/shells`, assume all shells are valid.
         //
