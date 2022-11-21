@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::config::{Become, User};
+use crate::subr::{Become, User};
 
 /// Our database of users and their "roles" aka who they are allowed to become
 ///
