@@ -4,7 +4,14 @@
 
 > **Lightweight alternative to sudo/doas**
 
+[![Build status](https://github.com/keltia/calife-rs/actions/workflows/rust.yml/badge.svg)](https://github.com/keltia/calife-rs/actions/workflows/rust.yml)
+[![Buildstatus (develop)](https://github.com/keltia/calife-rs/actions/workflows/develop.yml/badge.svg)](https://github.com/keltia/calife-rs/actions/workflows/develop.yml)
+[![Docs](https://img.shields.io/docsrs/dmarc-rs)](https://docs.rs/drone-utils)
+[![GitHub release](https://img.shields.io/github/release/keltia/dmarc-rs.svg)](https://github.com/keltia/calife-rs/releases/)
+[![GitHub issues](https://img.shields.io/github/issues/keltia/calife-rs.svg)](https://github.com/keltia/calife-rs/issues)
 [![calife-rs: 1.56+]][Rust 1.56]
+[![SemVer](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org/spec/v2.0.0.html)
+[![License](https://img.shields.io/crates/l/mit)](https://opensource.org/licenses/MIT)
 
 Licensed under the [MIT](LICENSE).
 
@@ -68,10 +75,6 @@ You can also specify some special options to configure in order to get specific 
 
 Specify the directory where calife will look for `calife.auth` and `calife.out`. Default is `/etc`.
 
-`--enable-debug`
-
-Enable more debug messages.
-
 `--enable-global-rc`
 
 Add `/etc/calife.out` support. This script will be run upon exit. It could be used to perform certain tasks like sending
@@ -131,9 +134,7 @@ I use Git Flow for this package so please use something similar or the usual git
 [adresse privée maison]: mailto:roberto@keltia.net
 
 [Calife]: https://www.keltia.net/programs/calife/
-
 [Github repository]: https://github.com/keltia/calife-rs/
-
-[Rust]: https://rtust-lang.org/
-
+[Rust]: https://rust-lang.org/
+[Rust 1.56]: https://blog.rust-lang.org/2021/10/21/Rust-1.56.0.html
 [Main site]: https://www.keltia.net/programs/calife/
