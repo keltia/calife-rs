@@ -10,13 +10,14 @@ pub mod version;
 
 use std::path::PathBuf;
 
-use anyhow::Result;
+use anyhow::{bail, Result};
 use clap::{crate_description, Parser};
 use log::debug;
 use log::LevelFilter::{Debug, Info};
 
 use crate::cli::Opts;
 use crate::config::Config;
+use crate::subr::Become;
 use crate::version::{CALIFE_NAME, CALIFE_VERSION};
 
 fn main() -> Result<()> {
@@ -51,5 +52,30 @@ fn main() -> Result<()> {
     let users = Config::load(PathBuf::from("testdata/calife.auth"))?;
     debug!("{:?}", &users);
 
+    // getlogin(3) equiv
+    //
+    let whoami = user::get_user_name()?;
+    debug!("I am {}", whoami);
+
+    // Do we exist in the auth db?
+    //
+    if !users.exist(&whoami) {
+        bail!("We do not exist, sorry");
+    }
+
+    // Compute who we want to be
+    //
+    let who = match opts.who {
+        Some(who) => {
+            Become::from(who.as_str())
+        },
+        // No argument so we want to become "root"
+        _ => {
+            Become::Root
+        }
+    };
+
+    dbg!(&who);
+    debug!("We want to be {:?}", who);
     Ok(())
 }
