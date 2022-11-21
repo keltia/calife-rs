@@ -16,7 +16,7 @@ impl Auth {
         self.0.contains_key(user)
     }
 
-    pub fn authorized(&self, who: Become) -> bool {
+    pub fn authorized(&self, _who: Become) -> bool {
         false
     }
 }
