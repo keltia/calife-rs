@@ -15,18 +15,41 @@ use clap::{crate_description, Parser};
 use log::debug;
 use log::LevelFilter::{Debug, Info};
 
-use crate::config::{User, CONFIG_FILE, Config, BASEDIR};
+use crate::cli::Opts;
+use crate::config::Config;
 use crate::version::{CALIFE_NAME, CALIFE_VERSION};
 
 fn main() -> Result<()> {
-    println!("Hello, world! {} = {}", CALIFE_NAME, CALIFE_VERSION);
-    let def: PathBuf = makepath!(BASEDIR, CONFIG_FILE);
-    println!("Default config in {:?}", def);
+    let opts: Opts = Opts::parse();
 
-    // Temp for devlopment
+    // Exit if needed
     //
+    if opts.version {
+        println!("{} v{}", CALIFE_NAME, CALIFE_VERSION);
+        println!("{}", crate_description!());
+        println!("Config in {:?}", Config::default_file());
+        return Ok(());
+    }
+
+    let lvl = if opts.debug {
+        Debug
+    } else {
+        Info
+    };
+
+    // Prepare logging.
+    //
+    stderrlog::new()
+        .verbosity(lvl)
+        .init()?;
+
+    debug!("Hello, world! {} = {}", CALIFE_NAME, CALIFE_VERSION);
+
+    // Temp for development
+    //
+    debug!("Loading from {:?}", Config::default_file());
     let users = Config::load(PathBuf::from("testdata/calife.auth"))?;
-    dbg!(&users);
+    debug!("{:?}", &users);
 
     Ok(())
 }

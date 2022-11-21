@@ -9,6 +9,9 @@ pub struct Opts {
     /// Debug mode
     #[clap(short = 'D', long)]
     pub debug: bool,
+    /// Display version and exit
+    #[clap(short = 'V', long)]
+    pub version: bool,
     /// Username to become (default = "root")
     pub who: Option<String>,
 }
